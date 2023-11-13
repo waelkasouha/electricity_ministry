@@ -17,7 +17,7 @@ class HomeController extends Controller
     use ApiResponseTrait;
     public function landings()
     {
-        $landings = Landing::take(3)->get(['id', 'title', 'imageUrl']);
+        $landings = Landing::latest()->take(3)->get(['id', 'title', 'imageUrl']);
 
         if ($landings) {
             return $this->successResponse($landings);
@@ -39,7 +39,7 @@ class HomeController extends Controller
     }
     public function services()
     {
-        $services = Service::take(3)->get(['id', 'title', 'iconUrl']);
+        $services = Service::latest()->take(3)->get(['id', 'title', 'iconUrl']);
 
         if ($services) {
             return $this->successResponse($services);
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
     public function latestNews()
     {
-        $latestNews = LatestNew::take(5)->get(['id', 'title', 'content', 'created_at', 'imageUrl']);
+        $latestNews = LatestNew::latest()->take(5)->get(['id', 'title', 'content', 'created_at', 'imageUrl']);
 
         if ($latestNews) {
             return $this->successResponse($latestNews);
@@ -84,7 +84,7 @@ class HomeController extends Controller
 
     public function martyrs()
     {
-        $martyrs = Martyr::take(5)->get(['name', 'imageUrl']);
+        $martyrs = Martyr::latest()->take(5)->get(['name', 'imageUrl']);
 
         if ($martyrs) {
             return $this->successResponse($martyrs);
